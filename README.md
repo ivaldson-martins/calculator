@@ -1,0 +1,1 @@
+Calculator project created from the Odin Project site with HTML, CSS and JavaScript.
