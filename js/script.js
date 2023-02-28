@@ -37,6 +37,7 @@ let firstNumber = 0;
 let lastNumber = 0;
 let storeOperator = '';
 let result = 0;
+let existResult = false;
 const numbers = document.querySelectorAll('.numbers');
 const currentDisplay = document.querySelector('.current-display');
 const operators = document.querySelectorAll('.operators');
@@ -55,11 +56,19 @@ numbers.forEach(number => {
 });
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
-        storeOperator = operator.textContent;
-        firstNumber = Number(displayValue);
-        displayValue = displayValue + ' ' + operator.textContent;
-        historyDisplay.textContent = displayValue;  
-        displayValue = '';
+        if (existResult) {
+            storeOperator = operator.textContent;
+            firstNumber = Number(result);
+            historyDisplay.textContent = firstNumber + ' ' + operator.textContent;
+            existResult = false;
+        } else {
+            storeOperator = operator.textContent;
+            firstNumber = Number(displayValue);
+            displayValue = displayValue + ' ' + operator.textContent;
+            historyDisplay.textContent = displayValue;  
+            displayValue = ''; 
+        }
+        
     });
 });
 operateButton.addEventListener('click', () => {
@@ -72,7 +81,7 @@ operateButton.addEventListener('click', () => {
         } else {
             currentDisplay.textContent = 'OOPS';
         }
-        
+        existResult = true;
         displayValue = ''; 
     }
 });
