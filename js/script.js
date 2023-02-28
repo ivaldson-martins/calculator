@@ -18,15 +18,34 @@ function operate(operator, a, b) {
 }
 
 let displayValue = '';
+let firstNumber = 0;
+let lastNumber = 0;
 const numbers = document.querySelectorAll('.numbers');
 const currentDisplay = document.querySelector('.current-display');
+const operators = document.querySelectorAll('.operators');
+const historyDisplay = document.querySelector('.history-display');
+const operateButton = document.querySelector('.operate');
+
 numbers.forEach(number => {
     number.addEventListener('click', () => {
         displayValue = displayValue + number.textContent;
         currentDisplay.textContent = displayValue;  
-        console.log(displayValue);    
+   
     });
 });
+operators.forEach(operator => {
+    operator.addEventListener('click', () => {
+        firstNumber = Number(displayValue);
+        displayValue = displayValue + ' ' + operator.textContent;
+        historyDisplay.textContent = displayValue;  
+        displayValue = '';
+    });
+});
+operateButton.addEventListener('click', () => {
+    if (historyDisplay.textContent != '') {
+        lastNumber = Number(displayValue);
 
-
-console.log(currentDisplay);
+    }
+});
+lastNumber = operate(add, 2, 2);
+console.log(lastNumber);
