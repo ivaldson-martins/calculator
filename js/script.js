@@ -16,3 +16,17 @@ function divide(a,b) {
 function operate(operator, a, b) {
     return operator(a,b);
 }
+
+let displayValue = '';
+const numbers = document.querySelectorAll('.numbers');
+const currentDisplay = document.querySelector('.current-display');
+numbers.forEach(number => {
+    number.addEventListener('click', () => {
+        displayValue = displayValue + number.textContent;
+        currentDisplay.textContent = displayValue;  
+        console.log(displayValue);    
+    });
+});
+
+
+console.log(currentDisplay);
