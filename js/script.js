@@ -76,18 +76,20 @@ operators.forEach(operator => {
             historyDisplay.textContent = firstNumber + ' ' + operator.textContent;
             existResult = false;
         } else if (storeOperator != '' && displayValue != ''){
-            storeOperator = operator.textContent;
             lastNumber = Number(displayValue);
             result = operate(storeOperator, firstNumber, lastNumber);
-            result = Math.round(result * 10000000000) / 10000000000;
-            historyDisplay.textContent = result + ' ' + storeOperator;
+            console.log(result, storeOperator);
             if (result != undefined) {
+                result = Math.round(result * 10000000000) / 10000000000;
+                historyDisplay.textContent = result + ' ' + storeOperator;
                 currentDisplay.textContent = result;
             } else {
-                currentDisplay.textContent = 'OOPS';
+                alert(`I'm sorry Sir, I'm afraid I can't do that`);
+            clear();
             }
             firstNumber = Number(result);
             displayValue = '';
+            storeOperator = operator.textContent;
         } else {
             storeOperator = operator.textContent;
             firstNumber = Number(displayValue);
@@ -103,12 +105,13 @@ operateButton.addEventListener('click', () => {
     if (historyDisplay.textContent != '' && displayValue != '') {
         lastNumber = Number(displayValue);
         result = operate(storeOperator, firstNumber, lastNumber);
-        result = Math.round(result * 10000000000) / 10000000000;
-        historyDisplay.textContent = historyDisplay.textContent + ' ' + lastNumber + ' =';
         if (result != undefined) {
+            result = Math.round(result * 10000000000) / 10000000000;
+            historyDisplay.textContent = historyDisplay.textContent + ' ' + lastNumber + ' =';
             currentDisplay.textContent = result;
         } else {
-            currentDisplay.textContent = 'OOPS';
+            alert(`I'm sorry Sir, I'm afraid I can't do that`);
+            clear();
         }
         existResult = true;
         displayValue = ''; 
