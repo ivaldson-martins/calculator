@@ -62,10 +62,10 @@ operators.forEach(operator => {
             historyDisplay.textContent = firstNumber + ' ' + operator.textContent;
             existResult = false;
         } else if (storeOperator != '' && displayValue != ''){
-            
             storeOperator = operator.textContent;
             lastNumber = Number(displayValue);
             result = operate(storeOperator, firstNumber, lastNumber);
+            result = Math.round(result * 10000000000) / 10000000000;
             historyDisplay.textContent = result + ' ' + storeOperator;
             if (result != undefined) {
                 currentDisplay.textContent = result;
@@ -89,6 +89,7 @@ operateButton.addEventListener('click', () => {
     if (historyDisplay.textContent != '') {
         lastNumber = Number(displayValue);
         result = operate(storeOperator, firstNumber, lastNumber);
+        result = Math.round(result * 10000000000) / 10000000000;
         historyDisplay.textContent = historyDisplay.textContent + ' ' + lastNumber + ' =';
         if (result != undefined) {
             currentDisplay.textContent = result;
