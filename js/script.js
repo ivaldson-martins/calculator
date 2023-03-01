@@ -63,6 +63,7 @@ numbers.forEach(number => {
         
         displayValue = Number(displayValue + number.textContent);
         currentDisplay.textContent = displayValue;
+        displayValue = displayValue.toString();
     });
 });
 operators.forEach(operator => {
@@ -83,7 +84,7 @@ operators.forEach(operator => {
                 currentDisplay.textContent = result;
             } else {
                 alert(`I'm sorry Sir, I'm afraid I can't do that`);
-            clear();
+                clear();
             }
             firstNumber = Number(result);
             displayValue = '';
@@ -105,7 +106,7 @@ operateButton.addEventListener('click', () => {
             historyDisplay.textContent = historyDisplay.textContent + ' ' + lastNumber + ' =';
             currentDisplay.textContent = result;
         } else {
-            alert(`I'm sorry Sir, I'm afraid I can't do that`);
+            alert(`I'm sorry Human, I'm afraid I can't do that`);
             clear();
         }
         existResult = true;
