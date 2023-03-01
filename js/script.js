@@ -86,7 +86,7 @@ operators.forEach(operator => {
     });
 });
 operateButton.addEventListener('click', () => {
-    if (historyDisplay.textContent != '') {
+    if (historyDisplay.textContent != '' && displayValue != '') {
         lastNumber = Number(displayValue);
         result = operate(storeOperator, firstNumber, lastNumber);
         result = Math.round(result * 10000000000) / 10000000000;
