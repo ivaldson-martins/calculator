@@ -57,13 +57,12 @@ function clear() {
 
 numbers.forEach(number => {
     number.addEventListener('click', () => {
-        
         if (existResult) {
             clear();
         }
-        displayValue = displayValue + number.textContent;
-        currentDisplay.textContent = displayValue;  
-   
+        
+        displayValue = Number(displayValue + number.textContent);
+        currentDisplay.textContent = displayValue;
     });
 });
 operators.forEach(operator => {
@@ -95,8 +94,6 @@ operators.forEach(operator => {
             historyDisplay.textContent = displayValue;  
             displayValue = ''; 
         }
-
-        
     });
 });
 operateButton.addEventListener('click', () => {
