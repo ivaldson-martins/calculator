@@ -32,7 +32,7 @@ function operate(operator, a, b) {
     }
 }
 
-let displayValue = '';
+let displayValue = '0';
 let firstNumber = 0;
 let lastNumber = 0;
 let storeOperator = '';
@@ -45,7 +45,7 @@ const historyDisplay = document.querySelector('.history-display');
 const operateButton = document.querySelector('.operate');
 const clearButton = document.querySelector('.clear');
 function clear() {
-    displayValue = '';
+    displayValue = '0';
     firstNumber = 0;
     lastNumber = 0;
     storeOperator = '';
