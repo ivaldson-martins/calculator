@@ -57,9 +57,7 @@ function clear() {
 
 numbers.forEach(number => {
     number.addEventListener('click', () => {
-        if (historyDisplay.textContent.charAt(historyDisplay.textContent.length-1) == '=') {
-            historyDisplay.textContent = '';
-        }
+        
         if (existResult) {
             clear();
         }
