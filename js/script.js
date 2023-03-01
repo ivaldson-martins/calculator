@@ -68,6 +68,7 @@ numbers.forEach(number => {
 });
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
+        
         if (existResult) {
             storeOperator = operator.textContent;
             firstNumber = Number(result);
@@ -89,11 +90,17 @@ operators.forEach(operator => {
             firstNumber = Number(result);
             displayValue = '';
         } else {
-            storeOperator = operator.textContent;
-            firstNumber = Number(displayValue);
-            displayValue = displayValue + ' ' + operator.textContent;
-            historyDisplay.textContent = displayValue;  
-            displayValue = ''; 
+            if (displayValue == '') {
+                storeOperator = operator.textContent;
+                historyDisplay.textContent = firstNumber + ' ' + operator.textContent;
+            } else {
+                console.log(storeOperator, displayValue);
+                storeOperator = operator.textContent;
+                firstNumber = Number(displayValue);
+                historyDisplay.textContent = displayValue + ' ' + operator.textContent;
+                displayValue = ''; 
+            }
+            
         }
     });
 });
