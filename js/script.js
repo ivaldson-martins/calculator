@@ -61,6 +61,19 @@ operators.forEach(operator => {
             firstNumber = Number(result);
             historyDisplay.textContent = firstNumber + ' ' + operator.textContent;
             existResult = false;
+        } else if (storeOperator != '' && displayValue != ''){
+            
+            storeOperator = operator.textContent;
+            lastNumber = Number(displayValue);
+            result = operate(storeOperator, firstNumber, lastNumber);
+            historyDisplay.textContent = result + ' ' + storeOperator;
+            if (result != undefined) {
+                currentDisplay.textContent = result;
+            } else {
+                currentDisplay.textContent = 'OOPS';
+            }
+            firstNumber = Number(result);
+            displayValue = '';
         } else {
             storeOperator = operator.textContent;
             firstNumber = Number(displayValue);
@@ -68,6 +81,7 @@ operators.forEach(operator => {
             historyDisplay.textContent = displayValue;  
             displayValue = ''; 
         }
+
         
     });
 });
