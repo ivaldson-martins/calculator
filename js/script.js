@@ -44,10 +44,24 @@ const operators = document.querySelectorAll('.operators');
 const historyDisplay = document.querySelector('.history-display');
 const operateButton = document.querySelector('.operate');
 const clearButton = document.querySelector('.clear');
+function clear() {
+    displayValue = '';
+    firstNumber = 0;
+    lastNumber = 0;
+    storeOperator = '';
+    result = 0;
+    existResult = false;
+    historyDisplay.textContent = '';
+    currentDisplay.textContent = '0';
+}
+
 numbers.forEach(number => {
     number.addEventListener('click', () => {
         if (historyDisplay.textContent.charAt(historyDisplay.textContent.length-1) == '=') {
             historyDisplay.textContent = '';
+        }
+        if (existResult) {
+            clear();
         }
         displayValue = displayValue + number.textContent;
         currentDisplay.textContent = displayValue;  
@@ -100,13 +114,4 @@ operateButton.addEventListener('click', () => {
         displayValue = ''; 
     }
 });
-clearButton.addEventListener('click', () => {
-    displayValue = '';
-    firstNumber = 0;
-    lastNumber = 0;
-    storeOperator = '';
-    result = 0;
-    existResult = false;
-    historyDisplay.textContent = '';
-    currentDisplay.textContent = '0';
-});
+clearButton.addEventListener('click', clear);
