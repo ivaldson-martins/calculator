@@ -80,6 +80,7 @@ operators.forEach(operator => {
             result = operate(storeOperator, firstNumber, lastNumber);
             console.log(result, storeOperator);
             if (result != undefined) {
+                storeOperator = operator.textContent;
                 result = Math.round(result * 10000000000) / 10000000000;
                 historyDisplay.textContent = result + ' ' + storeOperator;
                 currentDisplay.textContent = result;
@@ -89,7 +90,6 @@ operators.forEach(operator => {
             }
             firstNumber = Number(result);
             displayValue = '';
-            storeOperator = operator.textContent;
         } else {
             storeOperator = operator.textContent;
             firstNumber = Number(displayValue);
