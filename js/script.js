@@ -44,6 +44,7 @@ const operators = document.querySelectorAll('.operators');
 const historyDisplay = document.querySelector('.history-display');
 const operateButton = document.querySelector('.operate');
 const clearButton = document.querySelector('.clear');
+const deleteButton = document.querySelector('.delete');
 function clear() {
     displayValue = '0';
     firstNumber = 0;
@@ -119,5 +120,12 @@ operateButton.addEventListener('click', () => {
         existResult = true;
         displayValue = ''; 
     }
+});
+deleteButton.addEventListener('click', () => {
+    displayValue = displayValue.slice(0, displayValue.length-1)
+    displayValue = Number(displayValue);
+    currentDisplay.textContent = displayValue;
+    displayValue = displayValue.toString();
+
 });
 clearButton.addEventListener('click', clear);
