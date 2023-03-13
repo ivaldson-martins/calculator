@@ -45,6 +45,7 @@ const historyDisplay = document.querySelector('.history-display');
 const operateButton = document.querySelector('.operate');
 const clearButton = document.querySelector('.clear');
 const deleteButton = document.querySelector('.delete');
+const dotButton = document.querySelector('.dot');
 function clear() {
     displayValue = '0';
     firstNumber = 0;
@@ -127,5 +128,14 @@ deleteButton.addEventListener('click', () => {
     currentDisplay.textContent = displayValue;
     displayValue = displayValue.toString();
 
+});
+dotButton.addEventListener('click', () => {
+    if (displayValue.includes('.')) {
+        prompt('a')
+    } else {
+        displayValue = displayValue + dotButton.textContent;
+        currentDisplay.textContent = displayValue;
+        displayValue = displayValue.toString();
+    }
 });
 clearButton.addEventListener('click', clear);
