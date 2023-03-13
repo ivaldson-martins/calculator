@@ -56,16 +56,17 @@ function clear() {
     historyDisplay.textContent = '';
     currentDisplay.textContent = '0';
 }
-
+function uploadDisplay(value) {
+    if (existResult) {
+        clear();
+    }
+    displayValue = Number(displayValue + value);
+    currentDisplay.textContent = displayValue;
+    displayValue = displayValue.toString();
+}
 numbers.forEach(number => {
     number.addEventListener('click', () => {
-        if (existResult) {
-            clear();
-        }
-        
-        displayValue = Number(displayValue + number.textContent);
-        currentDisplay.textContent = displayValue;
-        displayValue = displayValue.toString();
+        uploadDisplay(number.textContent);
     });
 });
 operators.forEach(operator => {
@@ -139,3 +140,9 @@ dotButton.addEventListener('click', () => {
     }
 });
 clearButton.addEventListener('click', clear);
+window.addEventListener('keydown', (event) => {
+    let a = Number(event.key)
+    if (Number.isInteger(a)) {
+        uploadDisplay(event.key); 
+    }
+});
