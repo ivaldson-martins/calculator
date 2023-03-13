@@ -38,6 +38,7 @@ let lastNumber = 0;
 let storeOperator = '';
 let result = 0;
 let existResult = false;
+let arrayOperators = ['/','*','-','+'];
 const numbers = document.querySelectorAll('.numbers');
 const currentDisplay = document.querySelector('.current-display');
 const operators = document.querySelectorAll('.operators');
@@ -56,6 +57,41 @@ function clear() {
     historyDisplay.textContent = '';
     currentDisplay.textContent = '0';
 }
+function inputOperate(value) {
+    if (existResult) {
+        storeOperator = value;
+        firstNumber = Number(result);
+        historyDisplay.textContent = firstNumber + ' ' + value;
+        existResult = false;
+    } else if (storeOperator != '' && displayValue != '') {
+        lastNumber = Number(displayValue);
+        result = operate(storeOperator, firstNumber, lastNumber);
+        console.log(result, storeOperator);
+        if (result != undefined) {
+            storeOperator = value;
+            result = Math.round(result * 10000000000) / 10000000000;
+            historyDisplay.textContent = result + ' ' + storeOperator;
+            currentDisplay.textContent = result;
+        } else {
+            alert(`I'm sorry Sir, I'm afraid I can't do that`);
+            clear();
+        }
+        firstNumber = Number(result);
+        displayValue = '';
+    } else {
+        if (displayValue == '') {
+            storeOperator = value;
+            historyDisplay.textContent = firstNumber + ' ' + value;
+        } else {
+            console.log(storeOperator, displayValue);
+            storeOperator = value;
+            firstNumber = Number(displayValue);
+            historyDisplay.textContent = displayValue + ' ' + value;
+            displayValue = '';
+        }
+    }
+    
+}
 function uploadDisplay(value) {
     if (existResult) {
         clear();
@@ -71,40 +107,7 @@ numbers.forEach(number => {
 });
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
-        
-        if (existResult) {
-            storeOperator = operator.textContent;
-            firstNumber = Number(result);
-            historyDisplay.textContent = firstNumber + ' ' + operator.textContent;
-            existResult = false;
-        } else if (storeOperator != '' && displayValue != ''){
-            lastNumber = Number(displayValue);
-            result = operate(storeOperator, firstNumber, lastNumber);
-            console.log(result, storeOperator);
-            if (result != undefined) {
-                storeOperator = operator.textContent;
-                result = Math.round(result * 10000000000) / 10000000000;
-                historyDisplay.textContent = result + ' ' + storeOperator;
-                currentDisplay.textContent = result;
-            } else {
-                alert(`I'm sorry Sir, I'm afraid I can't do that`);
-                clear();
-            }
-            firstNumber = Number(result);
-            displayValue = '';
-        } else {
-            if (displayValue == '') {
-                storeOperator = operator.textContent;
-                historyDisplay.textContent = firstNumber + ' ' + operator.textContent;
-            } else {
-                console.log(storeOperator, displayValue);
-                storeOperator = operator.textContent;
-                firstNumber = Number(displayValue);
-                historyDisplay.textContent = displayValue + ' ' + operator.textContent;
-                displayValue = ''; 
-            }
-            
-        }
+        inputOperate(operator.textContent);
     });
 });
 operateButton.addEventListener('click', () => {
@@ -140,9 +143,12 @@ dotButton.addEventListener('click', () => {
     }
 });
 clearButton.addEventListener('click', clear);
+
 window.addEventListener('keydown', (event) => {
     let a = Number(event.key)
     if (Number.isInteger(a)) {
         uploadDisplay(event.key); 
+    } else if (arrayOperators.includes(event.key)) {
+        inputOperate(event.key);
     }
 });
