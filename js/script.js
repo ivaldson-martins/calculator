@@ -57,34 +57,31 @@ function inputOperate(value) {
   if (existResult) {
     storeOperator = value;
     firstNumber = Number(result);
-    historyDisplay.textContent = firstNumber + ' ' + value;
+    historyDisplay.textContent = `${firstNumber} ${value}`;
     existResult = false;
-  } else if (storeOperator != '' && displayValue != '') {
+  } else if (storeOperator !== '' && displayValue !== '') {
     lastNumber = Number(displayValue);
     result = operate(storeOperator, firstNumber, lastNumber);
-    if (result != undefined) {
+    if (result !== undefined) {
       storeOperator = value;
       result = Math.round(result * 10000000000) / 10000000000;
-      historyDisplay.textContent = result + ' ' + storeOperator;
+      historyDisplay.textContent = `${result} ${storeOperator}`;
       currentDisplay.textContent = result;
     } else {
-      alert(`I'm sorry Sir, I'm afraid I can't do that`);
+      alert('I\'m sorry Sir, I\'m afraid I can\'t do that');
       clear();
     }
     firstNumber = Number(result);
     displayValue = '';
+  } else if (displayValue === '') {
+    storeOperator = value;
+    historyDisplay.textContent = `${firstNumber} ${value}`;
   } else {
-    if (displayValue == '') {
-      storeOperator = value;
-      historyDisplay.textContent = firstNumber + ' ' + value;
-    } else {
-      storeOperator = value;
-      firstNumber = Number(displayValue);
-      historyDisplay.textContent = displayValue + ' ' + value;
-      displayValue = '';
-    }
+    storeOperator = value;
+    firstNumber = Number(displayValue);
+    historyDisplay.textContent = `${displayValue} ${value}`;
+    displayValue = '';
   }
-
 }
 function uploadDisplay(value) {
   if (existResult) {
@@ -96,7 +93,7 @@ function uploadDisplay(value) {
 }
 function dotInsert(value) {
   if (!(displayValue.includes('.'))) {
-    displayValue = displayValue + value;
+    displayValue = `${displayValue}${value}`;
     currentDisplay.textContent = displayValue;
     displayValue = displayValue.toString();
   }
@@ -108,15 +105,15 @@ function backspace() {
   displayValue = displayValue.toString();
 }
 function operateInput() {
-  if (historyDisplay.textContent != '' && displayValue != '') {
+  if (historyDisplay.textContent !== '' && displayValue !== '') {
     lastNumber = Number(displayValue);
     result = operate(storeOperator, firstNumber, lastNumber);
-    if (result != undefined) {
+    if (result !== undefined) {
       result = Math.round(result * 10000000000) / 10000000000;
-      historyDisplay.textContent = historyDisplay.textContent + ' ' + lastNumber + ' =';
+      historyDisplay.textContent = `${historyDisplay.textContent} ${lastNumber} =`;
       currentDisplay.textContent = result;
     } else {
-      alert(`I'm sorry Human, I'm afraid I can't do that`);
+      alert('I\'m sorry Human, I\'m afraid I can\'t do that');
       clear();
     }
     existResult = true;
@@ -146,20 +143,20 @@ dotButton.addEventListener('click', () => {
 clearButton.addEventListener('click', clear);
 
 window.addEventListener('keydown', (event) => {
-  let a = Number(event.key);
+  const a = Number(event.key);
   if (Number.isInteger(a)) {
     uploadDisplay(event.key);
   }
   if (arrayOperators.includes(event.key)) {
     inputOperate(event.key);
   }
-  if (event.key == '.') {
+  if (event.key === '.') {
     dotInsert(event.key);
   }
-  if (event.key == "Backspace") {
+  if (event.key === 'Backspace') {
     backspace();
   }
-  if (event.key == "Enter") {
+  if (event.key === 'Enter') {
     operateInput();
   }
 });
