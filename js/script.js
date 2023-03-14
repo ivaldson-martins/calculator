@@ -100,6 +100,16 @@ function uploadDisplay(value) {
     currentDisplay.textContent = displayValue;
     displayValue = displayValue.toString();
 }
+function dotInsert(value) {
+    if (displayValue.includes('.')) {
+        prompt('a')
+    } else {
+        displayValue = displayValue + value;
+        currentDisplay.textContent = displayValue;
+        displayValue = displayValue.toString();
+    }
+}
+
 numbers.forEach(number => {
     number.addEventListener('click', () => {
         uploadDisplay(number.textContent);
@@ -134,13 +144,7 @@ deleteButton.addEventListener('click', () => {
 
 });
 dotButton.addEventListener('click', () => {
-    if (displayValue.includes('.')) {
-        prompt('a')
-    } else {
-        displayValue = displayValue + dotButton.textContent;
-        currentDisplay.textContent = displayValue;
-        displayValue = displayValue.toString();
-    }
+    dotInsert(dotButton.textContent);
 });
 clearButton.addEventListener('click', clear);
 
@@ -148,7 +152,11 @@ window.addEventListener('keydown', (event) => {
     let a = Number(event.key)
     if (Number.isInteger(a)) {
         uploadDisplay(event.key); 
-    } else if (arrayOperators.includes(event.key)) {
+    }
+    if (arrayOperators.includes(event.key)) {
         inputOperate(event.key);
+    }
+    if (event.key == '.') {
+        dotInsert(event.key);
     }
 });
