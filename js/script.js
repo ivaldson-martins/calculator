@@ -104,7 +104,7 @@ function backspace() {
   currentDisplay.textContent = displayValue;
   displayValue = displayValue.toString();
 }
-function operateInput() {
+function equalOperate() {
   if (historyDisplay.textContent !== '' && displayValue !== '') {
     lastNumber = Number(displayValue);
     result = operate(storeOperator, firstNumber, lastNumber);
@@ -132,7 +132,7 @@ operators.forEach(operator => {
   });
 });
 operateButton.addEventListener('click', () => {
-  operateInput();
+  equalOperate();
 });
 deleteButton.addEventListener('click', () => {
   backspace();
@@ -157,6 +157,6 @@ window.addEventListener('keydown', (event) => {
     backspace();
   }
   if (event.key === 'Enter') {
-    operateInput();
+    equalOperate();
   }
 });
