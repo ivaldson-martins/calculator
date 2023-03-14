@@ -66,7 +66,6 @@ function inputOperate(value) {
     } else if (storeOperator != '' && displayValue != '') {
         lastNumber = Number(displayValue);
         result = operate(storeOperator, firstNumber, lastNumber);
-        console.log(result, storeOperator);
         if (result != undefined) {
             storeOperator = value;
             result = Math.round(result * 10000000000) / 10000000000;
@@ -83,7 +82,6 @@ function inputOperate(value) {
             storeOperator = value;
             historyDisplay.textContent = firstNumber + ' ' + value;
         } else {
-            console.log(storeOperator, displayValue);
             storeOperator = value;
             firstNumber = Number(displayValue);
             historyDisplay.textContent = displayValue + ' ' + value;
@@ -101,9 +99,7 @@ function uploadDisplay(value) {
     displayValue = displayValue.toString();
 }
 function dotInsert(value) {
-    if (displayValue.includes('.')) {
-        prompt('a')
-    } else {
+    if (!(displayValue.includes('.'))) {
         displayValue = displayValue + value;
         currentDisplay.textContent = displayValue;
         displayValue = displayValue.toString();
