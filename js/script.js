@@ -115,18 +115,7 @@ function backspace() {
     currentDisplay.textContent = displayValue;
     displayValue = displayValue.toString();
 }
-
-numbers.forEach(number => {
-    number.addEventListener('click', () => {
-        uploadDisplay(number.textContent);
-    });
-});
-operators.forEach(operator => {
-    operator.addEventListener('click', () => {
-        inputOperate(operator.textContent);
-    });
-});
-operateButton.addEventListener('click', () => {
+function operateInput() {
     if (historyDisplay.textContent != '' && displayValue != '') {
         lastNumber = Number(displayValue);
         result = operate(storeOperator, firstNumber, lastNumber);
@@ -139,8 +128,22 @@ operateButton.addEventListener('click', () => {
             clear();
         }
         existResult = true;
-        displayValue = ''; 
+        displayValue = '';
     }
+}
+
+numbers.forEach(number => {
+    number.addEventListener('click', () => {
+        uploadDisplay(number.textContent);
+    });
+});
+operators.forEach(operator => {
+    operator.addEventListener('click', () => {
+        inputOperate(operator.textContent);
+    });
+});
+operateButton.addEventListener('click', () => {
+    operateInput();
 });
 deleteButton.addEventListener('click', () => {
     backspace();
@@ -163,5 +166,8 @@ window.addEventListener('keydown', (event) => {
     }
     if (event.key == "Backspace") {
         backspace();
+    }
+    if (event.key == "Enter") {
+        operateInput();
     }
 });
