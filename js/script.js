@@ -109,6 +109,12 @@ function dotInsert(value) {
         displayValue = displayValue.toString();
     }
 }
+function backspace() {
+    displayValue = displayValue.slice(0, displayValue.length-1)
+    displayValue = Number(displayValue);
+    currentDisplay.textContent = displayValue;
+    displayValue = displayValue.toString();
+}
 
 numbers.forEach(number => {
     number.addEventListener('click', () => {
@@ -137,11 +143,7 @@ operateButton.addEventListener('click', () => {
     }
 });
 deleteButton.addEventListener('click', () => {
-    displayValue = displayValue.slice(0, displayValue.length-1)
-    displayValue = Number(displayValue);
-    currentDisplay.textContent = displayValue;
-    displayValue = displayValue.toString();
-
+    backspace();
 });
 dotButton.addEventListener('click', () => {
     dotInsert(dotButton.textContent);
@@ -158,5 +160,8 @@ window.addEventListener('keydown', (event) => {
     }
     if (event.key == '.') {
         dotInsert(event.key);
+    }
+    if (event.key == "Backspace") {
+        backspace();
     }
 });
