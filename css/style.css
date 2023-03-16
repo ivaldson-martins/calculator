@@ -1,0 +1,76 @@
+#display {
+  grid-area: display;
+}
+.number1{
+  grid-area: one;
+}
+.number2{
+  grid-area: two;
+}
+.number3{
+  grid-area: three;
+}
+.number4{
+  grid-area: four;
+}
+.number5{
+  grid-area: five;
+}
+.number6{
+  grid-area: six;
+}
+.number7{
+  grid-area: seven;
+}
+.number8{
+  grid-area: eight;
+}
+.number9{
+  grid-area: nine;
+}
+.number0{
+  grid-area: zero;
+}
+.dot {
+  grid-area: dot;
+}
+.equal{
+  grid-area: equal;
+}
+.divide{
+  grid-area: divide;
+  background-color: #1B998B;
+}
+.multiply{
+  grid-area: multiply;
+  background-color: #ED217C;
+}
+.subtract{
+  grid-area: subtract;
+  background-color: #2D3047;
+}
+.plus{
+  grid-area: plus;
+  background-color: #FFFD82;
+}
+.clear{
+  grid-area: clear;
+}
+.delete{
+  grid-area: delete;
+}
+#calculator { 
+  display: grid;
+  justify-content: center;
+  column-gap: 10px;
+  row-gap: 10px;
+  grid-template-rows: repeat(5, 60px);
+  grid-template-columns: repeat(4, 60px);
+  grid-template-areas: 
+  'display display display display'
+  'seven eight nine divide'
+  'four five six multiply'
+  'one two three subtract'
+  'zero dot equal plus'
+  'delete delete clear clear';
+}
