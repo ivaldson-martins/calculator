@@ -103,6 +103,20 @@ button {
 }
 body {
   display: flex;
-  justify-content: center;
-  background-color: #6e27a8;
+  flex-flow: column;
+  align-items: center;
+  background-color: #ffffff;
+  row-gap: 50px;
+}
+h1 {
+  color: black;
+}
+.about{
+  display: flex;
+  align-items: center;
+}
+img {
+  
+  object-fit: contain;
+  height: 50px;
 }
