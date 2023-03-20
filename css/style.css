@@ -1,5 +1,13 @@
 .display {
+  word-wrap: break-word;
+  display: flex;
+  flex-flow: column;
   grid-area: display;
+  border-style: solid;
+  border-width: 5px;
+  border-color: grey;
+  color: black;
+  background-color: green;
 }
 .number1{
   grid-area: one;
@@ -59,7 +67,15 @@
 .delete{
   grid-area: delete;
 }
-.calculator { 
+.calculator {
+  background-color: rgb(70, 70, 70);
+  padding: 20px 20px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: black; 
+  width: 300px;
+  height: 400px; 
+  margin-top: 50px;
   display: grid;
   justify-content: center;
   column-gap: 10px;
@@ -76,10 +92,17 @@
 }
 div p {
   text-align: right;
+  height: 50%;
+  font-size: 100%;
 }
-.history-display{
-
+button {
+  border-width: 5 px;
+  border-color: grey;
+  font-size: 30px;
+  border-radius: 10px;
 }
-.current-display{
-
+body {
+  display: flex;
+  justify-content: center;
+  background-color: #6e27a8;
 }
