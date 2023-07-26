@@ -84,11 +84,11 @@
   grid-template-columns: repeat(4, 60px);
   grid-template-areas: 
   'display display display display'
+  'delete delete clear clear'
   'seven eight nine divide'
   'four five six multiply'
   'one two three subtract'
-  'zero dot equal plus'
-  'delete delete clear clear';
+  'zero dot equal plus';
 }
 div p {
   text-align: right;
